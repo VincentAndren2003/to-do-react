@@ -1,35 +1,67 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [todos, setTodos] = useState([{ text: "Todo kfdksd", done: false}, { text: "Todo 2", done: false}])
+  const [input, setInput] = useState("")
+
+  const addTodo = () => {
+    if (input.trim() === "") return
+    setTodos([...todos, { text: input, done: false }])
+    setInput("")
+  }
+
+  const toggleTodo = (index) => {
+    const newTodos = [...todos]
+    newTodos[index].done = !newTodos[index].done
+    setTodos(newTodos)
+  }
+
+  const deleteTodo = (index) => {
+    setTodos(todos.filter((_, i) => i !== index))
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div style={styles.container}>
+      <h1>📝 Min To-Do App</h1>
+      <input
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        placeholder="Vad ska du göra?"
+      />
+      <button onClick={addTodo}>Lägg till</button>
+
+      <ul>
+        {todos.map((todo, index) => (
+          <li key={index}>
+            <span
+              onClick={() => toggleTodo(index)}
+              style={todo.done ? styles.todoDone : styles.todoText}
+            >
+              {todo.text}
+            </span>
+            <button onClick={() => deleteTodo(index)}>❌</button>
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }
+
+
+const styles = {
+  container: {
+    padding: 20,
+  },
+  todoText: {
+    cursor: "pointer",
+  },
+  todoDone: {
+    textDecoration: "line-through",
+    color: "gray",
+    cursor: "pointer",
+  }
+}
+
 
 export default App
