@@ -171,7 +171,7 @@ const styles = {
     alignItems: "center",
   },
   completedTodo: {
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "#764949ff",
   },
 };
 

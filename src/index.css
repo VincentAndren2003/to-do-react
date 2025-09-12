@@ -3,19 +3,26 @@
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light;
-  background-color: #2d2bba;
+  background-color: #ffffff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 html, body {
   margin: 0;
   padding: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #629ace !important;
+  height: 100%;
+  width: 100%;
+  
+  /* Background image instead of color */
+  background-image: url('pexels-griffinw-2627023.jpg');
+  background-size: cover;       /* make it fill the screen */
+  background-repeat: no-repeat; /* no tiling */
+  background-position: center;  /* center the image */
+  background-attachment: fixed; /* stays fixed on scroll */
 }
 
 /* Remove display: flex from body, add it only to body */
