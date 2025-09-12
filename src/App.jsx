@@ -37,8 +37,6 @@ function App() {
         restDelta: 0.001,
     })
 
-    
-
   // persist both lists
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
@@ -82,21 +80,8 @@ function App() {
     totalTodos > 0 ? Math.round((completedTodos / totalTodos) * 100) : 0;
 
   return (
-    <div style={styles.container}>
-    <div style={container}>
-                <motion.nav
-                    initial={false}
-                    animate={isOpen ? "open" : "closed"}
-                    custom={height}
-                    ref={containerRef}
-                    style={nav}
-                >
-                    <motion.div style={background} variants={sidebarVariants} />
-                    <Navigation />
-                    <MenuToggle toggle={() => setIsOpen(!isOpen)} />
-                </motion.nav>
-            </div>
-            <motion.div
+      <>
+            <motion.div // the scroll progress bar
                 id="scroll-indicator"
                 style={{
                     scaleX,
@@ -105,10 +90,12 @@ function App() {
                     left: 0,
                     right: 0,
                     height: 10,
-                    originX: 0,
+                    transformOrigin: "0%", 
                     backgroundColor: "#ff0088",
+                    zIndex: 1000, // makes sure it stays on top
                 }}
-            />
+                />
+      <div style={styles.container}>
       <h1>Todos</h1>
       <h3>Create a todo below</h3>
 
@@ -178,17 +165,15 @@ function App() {
       <h4 onClick={clearDeletedTodos} style={{ cursor: "pointer" }}>
         Clear
       </h4>
-     <div style={styles.spacer}>
-          <h3>Scroll down to see the progress bar in action!</h3>
-          <p>This is some extra content to make the page scrollable.</p>
+     </div>
+      <div style ={styles.spacer}>
+          <h3>Scroll down to see the progress bar in action and read more about my Projects!</h3>
+            <Content />
           <div style={{ height: "100vh", backgroundColor: "#f5f5f5", padding: "20px" }}>
-            <h4>More content...</h4>
-            <p>Keep scrolling to see how the progress indicator at the top changes!</p>
+            <p>Learn About My Projects!</p>
           </div>
         </div>
-      </div>
-    
-
+        </>
   );
 }
 
@@ -217,13 +202,12 @@ const styles = {
     alignItems: "center",
   },
   completedTodo: {
-    backgroundColor: "#764949ff",
+    backgroundColor: "#4698e4ff",
   },
 };
 
 function Content() {
     return (
-        <>
             <article style={{ maxWidth: 500, padding: "150px 20px" }}>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -281,11 +265,11 @@ function Content() {
                     eu risus arcu. Proin sit amet lacus mollis, semper massa ut,
                     rutrum mi.
                 </p>
-                <p>
-                </p>
                  </article>
-        </>
-    )
+    
+)
 }
+
+
 
 export default App;

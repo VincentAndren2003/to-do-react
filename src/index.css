@@ -18,8 +18,7 @@ html, body {
   width: 100%;
   
   /* Background image instead of color */
-  background-color: #ffffff;
-  /*background-image: url('/background.jpg');
+  background-image: url("/background.jpg");
   background-size: cover;       /* make it fill the screen */
   background-repeat: no-repeat; /* no tiling */
   background-position: center;  /* center the image */
