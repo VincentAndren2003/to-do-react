@@ -169,7 +169,7 @@ function App() {
       <div style ={styles.spacer}>
           <h3>Scroll down to see the progress bar in action and read more about my Projects!</h3>
             <Content />
-          <div style={{ height: "100vh", backgroundColor: "#f5f5f5", padding: "20px" }}>
+          <div style={{ height: "400vh", backgroundColor: "#f5f5f5", padding: "0px" }}>
             <p>Learn About My Projects!</p>
           </div>
         </div>
@@ -202,13 +202,13 @@ const styles = {
     alignItems: "center",
   },
   completedTodo: {
-    backgroundColor: "#4698e4ff",
+    backgroundColor: "#5db1ff49",
   },
 };
 
 function Content() {
     return (
-            <article style={{ maxWidth: 500, padding: "150px 20px" }}>
+            <article style={{ maxWidth: 500, padding: "150px 0px" }}>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Aliquam ac rhoncus quam.
@@ -269,7 +269,5 @@ function Content() {
     
 )
 }
-
-
 
 export default App;
