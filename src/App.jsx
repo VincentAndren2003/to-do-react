@@ -8,6 +8,7 @@ import ListItem from "@mui/material/ListItem";
 import List from "@mui/material/List";
 import ListItemText from "@mui/material/ListItemText";
 import TextField from "@mui/material/TextField";
+import { motion, useSpring, useScroll } from "motion/react"
 
 const dummyTodos = [
   { id: 1, text: "To do 1 example", done: false },
@@ -28,6 +29,15 @@ function App() {
   });
 
   const [input, setInput] = useState("");
+
+   const { scrollYProgress } = useScroll() // Scroll animation from motion
+    const scaleX = useSpring(scrollYProgress, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001,
+    })
+
+    
 
   // persist both lists
   useEffect(() => {
@@ -73,6 +83,32 @@ function App() {
 
   return (
     <div style={styles.container}>
+    <div style={container}>
+                <motion.nav
+                    initial={false}
+                    animate={isOpen ? "open" : "closed"}
+                    custom={height}
+                    ref={containerRef}
+                    style={nav}
+                >
+                    <motion.div style={background} variants={sidebarVariants} />
+                    <Navigation />
+                    <MenuToggle toggle={() => setIsOpen(!isOpen)} />
+                </motion.nav>
+            </div>
+            <motion.div
+                id="scroll-indicator"
+                style={{
+                    scaleX,
+                    position: "fixed",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: 10,
+                    originX: 0,
+                    backgroundColor: "#ff0088",
+                }}
+            />
       <h1>Todos</h1>
       <h3>Create a todo below</h3>
 
@@ -142,7 +178,17 @@ function App() {
       <h4 onClick={clearDeletedTodos} style={{ cursor: "pointer" }}>
         Clear
       </h4>
-    </div>
+     <div style={styles.spacer}>
+          <h3>Scroll down to see the progress bar in action!</h3>
+          <p>This is some extra content to make the page scrollable.</p>
+          <div style={{ height: "100vh", backgroundColor: "#f5f5f5", padding: "20px" }}>
+            <h4>More content...</h4>
+            <p>Keep scrolling to see how the progress indicator at the top changes!</p>
+          </div>
+        </div>
+      </div>
+    
+
   );
 }
 
@@ -174,5 +220,72 @@ const styles = {
     backgroundColor: "#764949ff",
   },
 };
+
+function Content() {
+    return (
+        <>
+            <article style={{ maxWidth: 500, padding: "150px 20px" }}>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Aliquam ac rhoncus quam.
+                </p>
+                <p>
+                    Fringilla quam urna. Cras turpis elit, euismod eget ligula
+                    quis, imperdiet sagittis justo. In viverra fermentum ex ac
+                    vestibulum. Aliquam eleifend nunc a luctus porta. Mauris
+                    laoreet augue ut felis blandit, at iaculis odio ultrices.
+                    Nulla facilisi. Vestibulum cursus ipsum tellus, eu tincidunt
+                    neque tincidunt a.
+                </p>
+                <h2>Sub-header</h2>
+                <p>
+                    In eget sodales arcu, consectetur efficitur metus. Duis
+                    efficitur tincidunt odio, sit amet laoreet massa fringilla
+                    eu.
+                </p>
+                <p>
+                  Pellentesque id lacus pulvinar elit pulvinar pretium ac non
+                    urna. Mauris id mauris vel arcu commodo venenatis. Aliquam
+                    eu risus arcu. Proin sit amet lacus mollis, semper massa ut,
+                    rutrum mi.
+                </p>
+                <p>
+                    Sed sem nisi, luctus consequat ligula in, congue sodales
+                    nisl.
+                </p>
+                <p>
+                    Vestibulum bibendum at erat sit amet pulvinar. Pellentesque
+                    pharetra leo vitae tristique rutrum. Donec ut volutpat ante,
+                    ut suscipit leo.
+                </p>
+                <h2>Sub-header</h2>
+                <p>
+                    Maecenas quis elementum nulla, in lacinia nisl. Ut rutrum
+                    fringilla aliquet. Pellentesque auctor vehicula malesuada.
+                    Aliquam id feugiat sem, sit amet tempor nulla. Quisque
+                    fermentum felis faucibus, vehicula metus ac, interdum nibh.
+                    Curabitur vitae convallis ligula. Integer ac enim vel felis
+                    pharetra laoreet. Interdum et malesuada fames ac ante ipsum
+                    primis in faucibus. Pellentesque hendrerit ac augue quis
+                    pretium.
+                </p>
+                <p>
+                    Morbi ut scelerisque nibh. Integer auctor, massa non dictum
+                    tristique, elit metus efficitur elit, ac pretium sapien nisl
+                    nec ante. In et ex ultricies, mollis mi in, euismod dolor.
+                </p>
+                <p>Quisque convallis ligula non magna efficitur tincidunt.</p>
+                <p>
+                    Pellentesque id lacus pulvinar elit pulvinar pretium ac non
+                    urna. Mauris id mauris vel arcu commodo venenatis. Aliquam
+                    eu risus arcu. Proin sit amet lacus mollis, semper massa ut,
+                    rutrum mi.
+                </p>
+                <p>
+                </p>
+                 </article>
+        </>
+    )
+}
 
 export default App;
