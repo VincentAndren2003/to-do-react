@@ -1,6 +1,6 @@
 {
-   "homepage": "https://VincentAndren2003.github.io/my-vite-project",
-   "name": "to-do",
+  "homepage": "https://VincentAndren2003.github.io/my-vite-project",
+  "name": "to-do",
   "private": true,
   "version": "0.0.0",
   "type": "module",
