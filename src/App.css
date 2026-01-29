@@ -3,11 +3,10 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  background-color: #ececec
 }
 
 html, body{
-  background-image: url("/background.jpg");
+  background-image: url("/background1.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
