@@ -1,0 +1,21 @@
+
+> to-do@0.0.0 predeploy
+> npm run build
+
+
+> to-do@0.0.0 build
+> vite build
+
+vite v7.1.5 building for production...
+transforming...
+✓ 911 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     0.50 kB │ gzip:   0.31 kB
+dist/assets/index-dO9SYefr.css      0.81 kB │ gzip:   0.39 kB
+dist/assets/index-BR6qcdDp.js   1,082.66 kB │ gzip: 301.62 kB
+✓ built in 1.47s
+
+> to-do@0.0.0 deploy
+> gh-pages -d dist # builds and pushes dist -
+
