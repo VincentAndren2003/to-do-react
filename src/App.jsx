@@ -361,13 +361,24 @@ function App() {
   return (
     <>
       {/* Auth controls (Email/Password + optional Google) */}
-      <div style={{ display: "flex", justifyContent: "flex-end", gap: 12, padding: 12, alignItems: "center" }}>
+      <div style={{ display: "flex", justifyContent: "flex-end", gap: 12, padding: 12, alignItems: "center", backgroundColor: "#fff", borderRadius: 8 }}>
         {user ? (
           <>
             <div style={{ alignSelf: "center", fontSize: 14, opacity: 0.85 }}>
               {user.isAnonymous ? "Guest" : user.displayName || user.email}
             </div>
-            <Button variant="outlined" onClick={signOutUser}>Sign out</Button>
+            <Button
+              variant="outlined"
+              onClick={signOutUser}
+              sx={{
+                backgroundColor: "#fff",
+                color: "#222",
+                borderColor: "#ddd",
+                "&:hover": { backgroundColor: "#f2f2f2" },
+              }}
+            >
+              Sign out
+            </Button>
           </>
         ) : (
           <>
@@ -378,7 +389,13 @@ function App() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 autoComplete="username"
-                
+                variant="outlined"
+                sx={{
+                  "& .MuiInputBase-root": {
+                    backgroundColor: "#fff",
+                    borderRadius: "8px",
+                  },
+                }}
               />
               <TextField
                 size="small"
@@ -387,10 +404,16 @@ function App() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 autoComplete="current-password"
+                variant="outlined"
+                sx={{
+                  "& .MuiInputBase-root": {
+                    backgroundColor: "#fff",
+                    borderRadius: "8px",
+                  },
+                }}
               />
               <Button variant="contained" onClick={signInEmail}>Sign in</Button>
               <Button variant="outlined" onClick={signUpEmail}>Sign up</Button>
-              {/* Optional Google button (only works if enabled in console) */}
               <Button variant="contained" onClick={signInWithGoogle} sx={{ ml: 1 }}>
                 Google
               </Button>
